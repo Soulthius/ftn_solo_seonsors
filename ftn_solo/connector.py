@@ -5,7 +5,6 @@ import mujoco.viewer
 import pybullet
 import rclpy
 from ftn_solo.utils.bullet_env import BulletEnvWithGround
-from ftn_solo.utils.pinocchio import PinocchioWrapper
 from rclpy.node import Node
 from sensor_msgs.msg import JointState
 import numpy as np
@@ -285,7 +284,6 @@ class ConnectorNode(Node):
         hardware = self.get_parameter(
             'hardware').get_parameter_value().string_value
         self.time_publisher = None
-        
         if hardware.lower() != "robot":
             self.time_publisher = self.create_publisher(Clock, "/clock", 10)
         self.clock = Clock()

@@ -35,39 +35,38 @@ class RobotMove():
 
         pos=[]
         
-        for x in range(0,4):
+        alfa=np.radians(angle)
+        R_y=np.array([[np.cos(alfa),0,np.sin(alfa)],
+        [ 0,  1, 0],
+        [ -np.sin(alfa),  0 ,np.cos(alfa)]])
+        oMdes=self.pin_robot.moveSE3(R_y,t)
+        pos.append(oMdes)
         
-            if x == 1:
-                t[1]=-t[1]
-                alfa=np.radians(angle)
-                R_y=np.array([[np.cos(alfa),0,np.sin(alfa)],
-                [ 0,  1, 0],
-                [ -np.sin(alfa),  0 ,np.cos(alfa)]])
-                oMdes=self.pin_robot.moveSE3(R_y,t)
-            elif x == 2:
-                alfa=np.radians(-angle)
-                t[0]=-t[0]
-                t[1]=-t[1]
-                R_y=np.array([[np.cos(alfa),0,np.sin(alfa)],
-                [ 0,  1, 0],
-                [ -np.sin(alfa),  0 ,np.cos(alfa)]])
-                oMdes=self.pin_robot.moveSE3(R_y,t)
-            elif x == 3:
-                alfa=np.radians(-angle)
-                t[1]=-t[1]
-                t[0]=t[0]
-                R_y=np.array([[np.cos(alfa),0,np.sin(alfa)],
-                [ 0,  1, 0],
-                [ -np.sin(alfa),  0 ,np.cos(alfa)]])
-                oMdes=self.pin_robot.moveSE3(R_y,t)
-            else:
-                alfa=np.radians(angle)
-                R_y=np.array([[np.cos(alfa),0,np.sin(alfa)],
-                [ 0,  1, 0],
-                [ -np.sin(alfa),  0 ,np.cos(alfa)]])
-                oMdes=self.pin_robot.moveSE3(R_y,t)
-                
-            pos.append(oMdes)
+        t[1]=-t[1]
+        alfa=np.radians(angle)
+        R_y=np.array([[np.cos(alfa),0,np.sin(alfa)],
+        [ 0,  1, 0],
+        [ -np.sin(alfa),  0 ,np.cos(alfa)]])
+        oMdes=self.pin_robot.moveSE3(R_y,t)
+        pos.append(oMdes)
+    
+        alfa=np.radians(-angle)
+        t[0]=-t[0]
+        t[1]=-t[1]
+        R_y=np.array([[np.cos(alfa),0,np.sin(alfa)],
+        [ 0,  1, 0],
+        [ -np.sin(alfa),  0 ,np.cos(alfa)]])
+        oMdes=self.pin_robot.moveSE3(R_y,t)
+        pos.append(oMdes)
+    
+        alfa=np.radians(-angle)
+        t[1]=-t[1]
+        t[0]=t[0]
+        R_y=np.array([[np.cos(alfa),0,np.sin(alfa)],
+        [ 0,  1, 0],
+        [ -np.sin(alfa),  0 ,np.cos(alfa)]])
+        oMdes=self.pin_robot.moveSE3(R_y,t)
+        pos.append(oMdes)
             
         return pos
     
